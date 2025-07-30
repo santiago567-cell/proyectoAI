@@ -1,4 +1,4 @@
-const API_KEY = "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"; // Your OpenRouter API key
+const API_KEY = "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"; // Your OpenRouter API key
 const chatBox = document.getElementById("chat-box");
 const input = document.getElementById("user-input");
 
@@ -35,21 +35,18 @@ When discussing serious topics like LGBTQ+ issues, maintain Church teaching but 
 `;
 
 window.onload = () => {
-  // Load Gen Z mode first
   const savedGenZMode = localStorage.getItem("genZMode") === "true";
   if (savedGenZMode) {
     isGenZMode = true;
     document.getElementById("gen-z-mode").classList.add("active");
   }
-  
-  // Load dark mode
+
   const isDark = localStorage.getItem("darkMode") === "true";
   if (isDark) {
     document.body.classList.add("dark");
     document.getElementById("toggle-mode").textContent = "☀️";
   }
-  
-  // Load chat history
+
   const saved = localStorage.getItem("chatHistory");
   if (saved) {
     chatBox.innerHTML = saved;
@@ -74,28 +71,6 @@ async function askAI() {
   const question = input.value.trim();
   if (!question) return;
 
-  const greetings = ["hi", "hello", "hey"];
-  if (greetings.includes(question.toLowerCase())) {
-    const userMsg = document.createElement("div");
-    userMsg.className = "message user";
-    userMsg.textContent = `You: ${question}`;
-    chatBox.appendChild(userMsg);
-
-    const aiMsg = document.createElement("div");
-    aiMsg.className = "message ai";
-    if (isGenZMode) {
-      aiMsg.textContent = "Chatholy: Yooo bestie! What's the vibe? How can I help you with the Catholic faith today? It's about to be fire! ✝️🔥";
-    } else {
-      aiMsg.textContent = "Chatholy: Hello! How can I assist you with the Catholic faith today?";
-    }
-    chatBox.appendChild(aiMsg);
-
-    input.value = "";
-    chatBox.scrollTop = chatBox.scrollHeight;
-    localStorage.setItem("chatHistory", chatBox.innerHTML);
-    return;
-  }
-
   const userMsg = document.createElement("div");
   userMsg.className = "message user";
   userMsg.textContent = `You: ${question}`;
@@ -119,7 +94,7 @@ async function askAI() {
         "X-Title": "Chatholy"
       },
       body: JSON.stringify({
-        model: "openai/gpt-4o", // ✅ GPT-4o selected here
+        model: "openai/gpt-4o",
         max_tokens: 300,
         messages: [
           { role: "system", content: isGenZMode ? genZSystemPrompt : systemPrompt },
@@ -129,7 +104,9 @@ async function askAI() {
     });
 
     const data = await res.json();
-    const reply = data.choices?.[0]?.message?.content || "I'm not sure how to answer that right now.";
+    const reply = data.choices?.[0]?.message?.content || (isGenZMode
+      ? "Lowkey not sure what to say rn 😅 Try asking that a different way!"
+      : "Hmm, I'm not sure how to respond. Could you try rephrasing?");
     loadingMsg.remove();
 
     const aiMsg = document.createElement("div");
@@ -173,7 +150,7 @@ document.getElementById("toggle-mode").addEventListener("click", () => {
 document.getElementById("gen-z-mode").addEventListener("click", () => {
   isGenZMode = !isGenZMode;
   const genZButton = document.getElementById("gen-z-mode");
-  
+
   if (isGenZMode) {
     genZButton.classList.add("active");
     localStorage.setItem("genZMode", "true");
@@ -181,8 +158,7 @@ document.getElementById("gen-z-mode").addEventListener("click", () => {
     genZButton.classList.remove("active");
     localStorage.setItem("genZMode", "false");
   }
-  
-  // Clear chat and show new welcome message
+
   clearChat();
 });
 
