@@ -1,0 +1,221 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f7f8fc;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+body.dark {
+  background-color: #1e1e2f;
+  color: #ddd;
+}
+header {
+  background-color: #3c3f58;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.verse {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  color: #766;
+  margin-top: 1rem;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+}
+
+body.dark .verse {
+  color: #aaa;
+}
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.main-content {
+  display: flex;
+  gap: 2rem;
+  height: 100%;
+}
+
+.images-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 200px;
+  max-width: 250px;
+}
+
+.religious-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.religious-image:hover {
+  transform: scale(1.02);
+}
+
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+#chat-box {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+  flex: 1;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+body.dark #chat-box {
+  background: #2c2c44;
+  color: #ddd;
+}
+.message {
+  margin: 0.75rem 0;
+  line-height: 1.5;
+}
+.user {
+  text-align: right;
+  font-weight: 600;
+}
+.ai {
+  color: #4a4a4a;
+}
+body.dark .ai {
+  color: #bbb;
+}
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: none;
+  background: white;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+body.dark textarea {
+  background: #3b3b56;
+  color: #ddd;
+  border-color: #555;
+}
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+button {
+  padding: 0.75rem 1.5rem;
+  background-color: #3c3f58;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: #2e3045;
+}
+.header-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#toggle-mode {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: white;
+}
+
+#gen-z-mode {
+  background: linear-gradient(45deg, #8b5cf6, #a855f7);
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#gen-z-mode:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  background: linear-gradient(45deg, #7c3aed, #9333ea);
+}
+
+#gen-z-mode.active {
+  background: linear-gradient(45deg, #6d28d9, #7c2d12);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+
+  .images-container {
+    flex-direction: row;
+    min-width: auto;
+    max-width: none;
+    justify-content: center;
+  }
+
+  .religious-image {
+    max-width: 120px;
+  }
+
+  .verse {
+    font-size: 1rem;
+    margin-top: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .verse {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+}

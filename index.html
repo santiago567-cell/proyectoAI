@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chatholy ✝️ Catholic AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <span>Chatholy ✝️ Catholic AI</span>
+    <div class="header-buttons">
+      <button id="gen-z-mode">Z</button>
+      <button id="toggle-mode">🌙</button>
+    </div>
+  </header>
+  <main>
+    <div class="main-content">
+      <div class="images-container">
+        <img src="attached_assets/016bc21a8d7ab3ad3af056f85f26048a_1753835204407.jpg" alt="Jesus with Crown of Thorns" class="religious-image">
+        <img src="attached_assets/GESU' DI NAZARETH 1[1]_1753835199389.jpg" alt="Jesus Christ" class="religious-image">
+        <div class="verse">"I can do all things in Him who strengthens me." - Philippians 4:13</div>
+      </div>
+      <div class="chat-container">
+        <div id="chat-box"></div>
+        <textarea id="user-input" rows="3" maxlength="300" placeholder="Ask a question about the Catholic faith..."></textarea>
+        <div class="buttons">
+          <button onclick="askAI()">Ask Chatholy</button>
+          <button onclick="clearChat()">🆕 New Chat</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
